@@ -1,0 +1,89 @@
+﻿<Window x:Class="Client.View.AdminGui"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Client.View"
+        mc:Ignorable="d"
+        Title="{DynamicResource AdminGuiTitle}" Height="450" Width="800"
+        Background="{DynamicResource AppBackgroundBrush}">
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+        <Grid HorizontalAlignment="Center">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+
+            <!-- Form section : row 0 -->
+            <Expander Header="{DynamicResource AdminPageTitle}" IsExpanded="True" Margin="10" Grid.Row="0" x:Name="AdministrationExpander" Style="{StaticResource ExpanderBaseStyle}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- ID - Hidden -->
+                    <TextBox x:Name="IdTextBox" Margin="0,5,10,5" Grid.Column="1" Grid.Row="0" Visibility="Hidden" Style="{StaticResource InputControlStyle}"/>
+
+                    <!-- Name -->
+                    <Label Content="{DynamicResource NameLabel}" Grid.Column="0" Grid.Row="1" Style="{StaticResource LabelBaseStyle}"/>
+                    <TextBox x:Name="NameTextBox" Margin="0,5,10,5" Grid.Column="1" Grid.Row="1" Style="{StaticResource InputControlStyle}"/>
+
+                    <!-- Email -->
+                    <Label Content="{DynamicResource EmailLabel}" Grid.Column="0" Grid.Row="2" Style="{StaticResource LabelBaseStyle}"/>
+                    <TextBox x:Name="EmailTextBox" Margin="0,5,10,5" Grid.Column="1" Grid.Row="2" Style="{StaticResource InputControlStyle}"/>
+
+                    <!-- Password -->
+                    <Label Content="{DynamicResource PasswordLabel}" Grid.Column="0" Grid.Row="3" Style="{StaticResource LabelBaseStyle}"/>
+                    <TextBox x:Name="PasswordTextBox" Margin="0,5,10,5" Grid.Column="1" Grid.Row="3" Style="{StaticResource InputControlStyle}"/>
+
+                    <!-- User Type -->
+                    <Label Content="{DynamicResource UserTypeLabel}" Grid.Column="0" Grid.Row="4" Style="{StaticResource LabelBaseStyle}"/>
+                    <ComboBox x:Name="UserTypeComboBox" Margin="0,5,10,5" Grid.Column="1" Grid.Row="4" Style="{StaticResource ComboBoxBaseStyle}" HorizontalAlignment="Center" Width="200"/>
+
+                    <!-- Telephone -->
+                    <Label Content="{DynamicResource PhoneLabel}" Grid.Column="0" Grid.Row="5" Style="{StaticResource LabelBaseStyle}"/>
+                    <TextBox x:Name="PhoneTextBox" Margin="0,5,10,5" Grid.Column="1" Grid.Row="5" Style="{StaticResource InputControlStyle}"/>
+
+                    <!-- Buttons -->
+                    <StackPanel Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="2" HorizontalAlignment="Center" Orientation="Horizontal">
+                        <Button x:Name="CreateUserButton" Content="{DynamicResource CreateUserButton}" Width="150" Style="{StaticResource ButtonBaseStyle}" HorizontalAlignment="Left" Click="CreateUserButton_Click"/>
+                        <Button x:Name="UpdateUserButton" Content="{DynamicResource UpdateUserButton}" Width="150" Style="{StaticResource ButtonBaseStyle}" HorizontalAlignment="Right" Click="UpdateUserButton_Click"/>
+                        <Button x:Name="DeleteUserButton" Content="{DynamicResource DeleteUserButton}" Width="150" Style="{StaticResource ButtonBaseStyle}" Click="DeleteUserButton_Click"/>
+                    </StackPanel>
+                </Grid>
+            </Expander>
+
+
+            <!-- Filter section : row 1 -->
+            <Border Grid.Row="1" Style="{StaticResource DefaultBorderStyle}">
+                <UniformGrid Columns="3">
+                    <Label Content="{DynamicResource FilterUsersLabel}" Style="{StaticResource LabelBaseStyle}" />
+                    <ComboBox x:Name="ComboBoxUserType" Style="{StaticResource ComboBoxBaseStyle}" />
+                    <Button x:Name="FilterUsersButton" Content="{DynamicResource FilterUsersButton}" Style="{StaticResource ButtonBaseStyle}" Width="150" Click="FilterUsersButton_Click"/>
+                </UniformGrid>
+            </Border>
+
+            <!-- DataGrid -->
+            <DataGrid Grid.Row="2" x:Name="UserTable" Style="{StaticResource DataGridBaseStyle}"
+            SelectionChanged="UserTable_SelectionChanged"
+            AutoGenerateColumns="True" AutoGeneratingColumn="DataGrid_AutoGeneratingColumn">
+                <DataGrid.ColumnHeaderStyle>
+                    <StaticResource ResourceKey="DataGridColumnHeaderStyle"/>
+                </DataGrid.ColumnHeaderStyle>
+            </DataGrid>
+        </Grid>
+    </ScrollViewer>
+</Window>

@@ -1,0 +1,218 @@
+﻿<Window x:Class="Client.View.HomeGUI"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Client.View"
+        WindowState="Maximized"
+
+        mc:Ignorable="d"
+        Background="{DynamicResource AppBackgroundBrush}"    
+        Title="{DynamicResource HomeWindowTitle}" Height="450" Width="800">
+    <ScrollViewer VerticalScrollBarVisibility="Auto"  ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+
+            <!-- Hearder section :row0-->
+            <StackPanel Orientation="Horizontal" Grid.Row="0" x:Name="Header" 
+                    Background="{DynamicResource AppBackgroundBrush}" >
+                <!-- Banner -->
+                <TextBlock Text="{DynamicResource ConferenceAppTitle}" FontSize="20" FontWeight="Bold" VerticalAlignment="Center" Margin="10" Style="{DynamicResource HeaderTextBlockStyle}"/>
+                <Button x:Name="RomanianButton" Content="{DynamicResource RomanianLanguage}" Visibility="Hidden"                           
+                    Style="{DynamicResource ButtonBaseStyle}"/>
+                <Button x:Name="EnglishButton" Content="{DynamicResource EnglishLanguage}" MinWidth="100" Click="EnglishButton_Click"
+                    Style="{DynamicResource ButtonBaseStyle}"/>
+                <Button x:Name="FrenchButton" Content="{DynamicResource FrenchLanguage}" MinWidth="100"   Click="FrenchButton_Click"                                       
+                    Style="{DynamicResource ButtonBaseStyle}"/>
+                <Button x:Name="SpanishButton" Content="{DynamicResource SpanishLanguage}" MinWidth="100"    Click="SpanishButton_Click"                                     
+                    Style="{DynamicResource ButtonBaseStyle}"/>
+
+            </StackPanel>
+
+
+            <!-- Sign up section :row1-->
+            <Border Style="{DynamicResource DefaultBorderStyle}" Grid.Row="1">
+
+                <Expander Header="{DynamicResource Sign_up}" Style="{DynamicResource ExpanderBaseStyle}">
+                    <UniformGrid Rows="13" Columns="2">
+                        <!--Default fields for participant-->
+
+                        <!-- Row 1: Name Entry -->
+                        <Label Style="{DynamicResource LabelBaseStyle}" Content="{DynamicResource NameLabel}"/>
+                        <TextBox Name="NameTextBox" Style="{DynamicResource InputControlStyle}"/>
+
+                        <!-- Row 2: Email Entry -->
+                        <Label Style="{DynamicResource LabelBaseStyle}" Content="{DynamicResource EmailLabel}"/>
+                        <TextBox Name="EmailTextBox" Style="{DynamicResource InputControlStyle}"/>
+
+                        <!-- Row 3: Phone Number Entry -->
+                        <Label Style="{DynamicResource LabelBaseStyle}" Content="{DynamicResource PhoneLabel}"/>
+                        <TextBox Name="PhoneTextBox" Style="{DynamicResource InputControlStyle}"/>
+
+                        <!-- Row 4: CNP-->
+                        <Label Style="{DynamicResource LabelBaseStyle}" Content="{DynamicResource PINLabel}"/>
+                        <TextBox Name="PinTextBox" Style="{DynamicResource InputControlStyle}"/>
+
+                        <!-- Row 5: Photo Upload -->
+                        <Label Style="{DynamicResource LabelBaseStyle}" Content="{DynamicResource PhotoLabel}"/>
+                        <TextBox Name="PhotoPathTextBox" Style="{DynamicResource InputControlStyle}" Visibility="Collapsed"/>
+                        <Button Name="BrowsePhotoButton" Style="{DynamicResource ButtonBaseStyle}" Click="BrowsePhoto_Click"
+                                HorizontalAlignment="Center" Width="100" Content="{DynamicResource BrowseButton}"/>
+
+                        <!-- Row 6: Document Upload -->
+                        <Label Style="{DynamicResource LabelBaseStyle}" Content="{DynamicResource CVLabel}"/>
+                        <TextBox Name="DocumentPathTextBox" Style="{DynamicResource InputControlStyle}" Visibility="Collapsed"/>
+                        <Button Name="BrowseDocumentButton" Style="{DynamicResource ButtonBaseStyle}" Click="BrowseDocument_Click" 
+                                HorizontalAlignment="Center" Width="100" Content="{DynamicResource BrowseButton}"/>
+
+                        <!-- Row 7: Participant Type Selection -->
+                        <Label Style="{DynamicResource LabelBaseStyle}" Content="{DynamicResource TypeLabel}"/>
+                        <ComboBox Name="AuthorComboBox" Style="{DynamicResource ComboBoxBaseStyle}" HorizontalAlignment="Center" SelectionChanged="AuthorComboBox_SelectionChanged">
+                            <ComboBoxItem Content="{DynamicResource Author}"/>
+                            <ComboBoxItem Content="{DynamicResource Participant}"/>
+                        </ComboBox>
+
+
+                        <!--Participant Entry Fields-->
+                        <!-- Presentation Selection Entry -->
+                        <Label Style="{DynamicResource LabelBaseStyle}" Content="{DynamicResource PresentationLabel}" Name="PresentationLabel"  Visibility="Collapsed"/>
+                        <ComboBox Name="AttendPresentationComboBox" Style="{DynamicResource ComboBoxBaseStyle}" HorizontalAlignment="Center" Visibility="Collapsed"/>
+
+
+                        <!--Author Entry Fields-->
+                        <!--Presentation Title Entry-->
+                        <Label Style="{DynamicResource LabelBaseStyle}" Content="{DynamicResource TitleLabel}" Visibility="Collapsed"
+                               Name="TitleLabel"/>
+                        <TextBox Name="TitleTextBox" Style="{DynamicResource InputControlStyle}" Visibility="Collapsed"/>
+
+                        <!--Description Entry-->
+                        <Label Style="{DynamicResource LabelBaseStyle}" Content="{DynamicResource DescriptionLabel}" Visibility="Collapsed"
+                               Name="DescriptionLabel"/>
+                        <TextBox Name="DescriptionTextBox" Style="{DynamicResource InputControlStyle}" Visibility="Collapsed"/>
+
+                        <!--Data Entry-->
+                        <Label Style="{DynamicResource LabelBaseStyle}" Content="{DynamicResource DateLabel}"  Visibility="Collapsed"
+                               Name="DateLabel" />
+                        <DatePicker Name="PresentationDatePicker"  Style="{DynamicResource InputControlStyle}" Visibility="Collapsed"/>
+
+                        <!--Time Entry-->
+                        <Label Style="{DynamicResource LabelBaseStyle}" Content="{DynamicResource TimeLabel}"  Visibility="Collapsed"
+                               Name="TimeLabel"/>
+                        <TextBox Name="TimeTextBox" Style="{DynamicResource InputControlStyle}" Visibility="Collapsed"/>
+
+                        <Label Style="{DynamicResource LabelBaseStyle}" Content="{DynamicResource SectionLabel}"  Visibility="Collapsed"
+                               Name="SectionLabel"/>
+                        <ComboBox Name="SectionComboBox" Style="{DynamicResource ComboBoxBaseStyle}" Visibility="Collapsed" HorizontalAlignment="Center"/>
+
+
+                        <!--Submission Button -->
+                        <Button Name="SingUpButton" Content="{DynamicResource SingUpButton}"  HorizontalAlignment="Center" Style="{DynamicResource ButtonBaseStyle}" Click="SingUpButton_Click"/>
+                        <Button Name="LoginButton"  Content="{DynamicResource LoginButton}"   HorizontalAlignment="Center" Style="{DynamicResource ButtonBaseStyle}" Click="LoginButton_Click"/>
+                    </UniformGrid>
+                </Expander>
+            </Border>
+
+
+            <!-- Filter section :row2-->
+            <Border Style="{DynamicResource DefaultBorderStyle}" Grid.Row="2">
+                <UniformGrid Rows="1" >
+                    <Label  Style="{DynamicResource LabelBaseStyle}" Content="{DynamicResource SearchbySectionLabel}" HorizontalAlignment="Left" Width="Auto"/>
+                    <ComboBox Name="FilterPresentationComboBox" Style="{DynamicResource ComboBoxBaseStyle}"/>
+                    <Button Content="{DynamicResource ShowButton}"  HorizontalAlignment="Center" 
+                            x:Name="FilterPresentationButton" Click="FilterPresentationButton_Click"
+                            Style="{DynamicResource ButtonBaseStyle}"/>
+                </UniformGrid>
+            </Border>
+
+
+            <!--Presentation table section-->
+            <DataGrid Name="TabelConferinte" AutoGenerateColumns="False" CanUserAddRows="False"  Grid.Row="3" Style="{DynamicResource DataGridBaseStyle}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="{DynamicResource PresentationIdHeader}"         Binding="{Binding Path=Id}" />
+                    <DataGridTextColumn Header="{DynamicResource PresentationTitleHeader}"      Binding="{Binding Path=Title}" />
+                    <DataGridTextColumn Header="{DynamicResource PresentationDescriptionHeader}" Binding="{Binding Path=Description}" />
+                    <DataGridTextColumn Header="{DynamicResource PresentationDateHeader}"       Binding="{Binding Path=Date}" />
+                    <DataGridTextColumn Header="{DynamicResource PresentationSectionHeader}"    Binding="{Binding Path=Section}" />
+                </DataGrid.Columns>
+
+                <!--People Details section-->
+                <DataGrid.RowDetailsTemplate >
+                    <DataTemplate >
+                        <StackPanel >
+                            <!-- Participants section -->
+                            <TextBlock Text="{DynamicResource ParticipantsLabel}" FontWeight="Bold" FontSize="14" Padding="5" />
+                            <DataGrid ItemsSource="{Binding Participants}" HeadersVisibility="Column" 
+                                AutoGenerateColumns="False" CanUserAddRows="False" x:Name="ParticipantsTable" Grid.Row="3" 
+                                      ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}">
+                                <DataGrid.Columns>
+                                    <!-- Photo column -->
+                                    <DataGridTemplateColumn Header="{DynamicResource PhotoHeader}"  Width="auto" MinWidth="100">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Image Source="{Binding Path=PhotoImage}" Width="100" Height="100"/>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                    <DataGridTextColumn Header="{DynamicResource NameHeader}" Binding="{Binding Name}" Width="*" MinWidth="200"/>
+                                    <DataGridTextColumn Header="{DynamicResource EmailHeader}" Binding="{Binding Email}" Width="auto" MinWidth="200"/>
+                                    <!-- PDF file link column -->
+                                    <DataGridTemplateColumn Header="{DynamicResource CVHeader}" Width="auto" MinWidth="100">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock>
+                                    <Hyperlink NavigateUri="{Binding PdfFilePath}" RequestNavigate="DownloadLink_Click">
+                                        <TextBlock Text="{Binding PdfFilePath}" />
+                                    </Hyperlink>
+                                </TextBlock>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+
+                            <!-- Author section -->
+                            <TextBlock Text="{DynamicResource Author}" FontWeight="Bold" FontSize="14" Padding="5" />
+                            <DataGrid ItemsSource="{Binding Author}" HeadersVisibility="Column" 
+                                AutoGenerateColumns="False" CanUserAddRows="False" Grid.Row="3"                                                             
+                                ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}">
+                                <DataGrid.Columns>
+                                    <!-- Photo column -->
+                                    <DataGridTemplateColumn Header="{DynamicResource PhotoHeader}" Width="*" MinWidth="100">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Image Source="{Binding Path=PhotoImage}" Width="100" Height="100"/>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                    <DataGridTextColumn Header="{DynamicResource NameHeader}" Binding="{Binding Name}" MinWidth="200" Width="*"/>
+                                    <DataGridTextColumn Header="{DynamicResource EmailHeader}" Binding="{Binding Email}" MinWidth="200" Width="*"/>
+                                    <!-- PDF file link column -->
+                                    <DataGridTemplateColumn Header="{DynamicResource CVHeader}" Width="auto" MinWidth="100">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock>
+                                    <Hyperlink NavigateUri="{Binding PdfFilePath}" RequestNavigate="DownloadLink_Click">
+                                        <TextBlock Text="{Binding PdfFilePath}" />
+                                    </Hyperlink>
+                                </TextBlock>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </StackPanel>
+                    </DataTemplate>
+                </DataGrid.RowDetailsTemplate>
+
+            </DataGrid>
+
+        </Grid>
+    </ScrollViewer>
+
+</Window>
